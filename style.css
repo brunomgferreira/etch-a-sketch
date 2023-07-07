@@ -41,10 +41,16 @@ body {
 .grid {
     height: 500px;
     width: 500px;
-    background-color: black;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    background-color: none;
+    display: grid;
+    outline-style: solid;
+    outline-width: 4px;
+    padding: 0px;
+    outline-color: #dee2e6;
+}
+
+.pixel {
+    user-select: none;
 }
 
 button {

@@ -8,6 +8,7 @@ function setColor(newColor) {
 
 function setMode(newMode) {
     mode = newMode;
+    activateButton();
 }
 
 function setSize(newSize) {
@@ -18,23 +19,23 @@ function updateSizeValue(newSize){
     sizeValue.textContent = newSize + ' x ' + newSize;
 }
 
-function activateButton(mode) {
-    colorBtn.removeAttribute('class','active');
-    rainbowBtn.removeAttribute('class','active');
-    eraserBtn.removeAttribute('class','active');
-    clearBtn .removeAttribute('class','active');
+function activateButton() {
+    colorBtn.classList.remove('active');
+    rainbowBtn.classList.remove('active');
+    eraserBtn.classList.remove('active');
+    clearBtn.classList.remove('active');
 
     if(mode == 'color') {
-        colorBtn.setAttribute('class','active');
+        colorBtn.classList.add('active');
     }
     else if(mode == 'rainbow') {
-        rainbowBtn.setAttribute('class','active');
+        rainbowBtn.classList.add('active');
     }
     else if (mode == 'eraser') {
-        eraserBtn.setAttribute('class','active');
+        eraserBtn.classList.add('active');
     }
     else {
-        clearBtn.setAttribute('class', 'active');
+        clearBtn.classList.add('active');
     }
 }
 
@@ -108,5 +109,6 @@ function reloadGrid() {
 window.onload = () => {
     createGrid(size);
     sizeSlider.value = size;
+    setColor(colorPicker.value);
     activateButton(mode);
 }

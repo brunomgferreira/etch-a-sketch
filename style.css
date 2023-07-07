@@ -1,0 +1,84 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 100px;
+}
+
+/* Header */
+
+.header {
+    text-align: center;
+    margin: 50px;
+}
+
+.header h1 {
+    font-size: 70px;
+}
+
+/* Main */
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.settings {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.grid {
+    height: 500px;
+    width: 500px;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+button {
+    width: 200px;
+    height: 45px;
+    font-size: 20px;
+    background-color: rgba(0,0,0,0);
+    border-style: solid;
+    border-radius: 10px;
+}
+
+#sizeValue {
+    font-size: 30px;
+}
+
+#colorPicker {
+    border: none;
+    background-color: rgba(0,0,0,0);
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+}
+
+/* Footer */
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+}

@@ -18,6 +18,26 @@ function updateSizeValue(newSize){
     sizeValue.textContent = newSize + ' x ' + newSize;
 }
 
+function activateButton(mode) {
+    colorBtn.removeAttribute('class','active');
+    rainbowBtn.removeAttribute('class','active');
+    eraserBtn.removeAttribute('class','active');
+    clearBtn .removeAttribute('class','active');
+
+    if(mode == 'color') {
+        colorBtn.setAttribute('class','active');
+    }
+    else if(mode == 'rainbow') {
+        rainbowBtn.setAttribute('class','active');
+    }
+    else if (mode == 'eraser') {
+        eraserBtn.setAttribute('class','active');
+    }
+    else {
+        clearBtn.setAttribute('class', 'active');
+    }
+}
+
 const colorPicker = document.getElementById('colorPicker');
 const colorBtn = document.getElementById('colorBtn');
 const rainbowBtn = document.getElementById('rainbowBtn');
@@ -31,19 +51,18 @@ colorPicker.oninput = (e) => setColor(e.target.value);
 colorBtn.onclick = () => setMode('color');
 rainbowBtn.onclick = () => setMode('rainbow');
 eraserBtn.onclick = () => setMode('eraser');
-clearBtn.onclick = () => cleanGrid();
-sizeSlider.onchange = (e) => setSize(e.target.value);
+clearBtn.onclick = () => reloadGrid();
+sizeSlider.onchange = (e) => changeSize(e.target.value);
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 
 let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
-
+grid.onmousedown = () => (mouseDown = true);
+grid.onmouseup = () => (mouseDown = false);
 
 grid.addEventListener('mouseover',draw);
 grid.addEventListener('mousedown',draw);
 
-function draw(e){
+function draw(e) {
     if (e.type  === 'mouseover' && !mouseDown) return
     if(mode == 'color'){
         e.target.style.backgroundColor = color;
@@ -57,15 +76,19 @@ function draw(e){
         const green = Math.floor(Math.random() * 256);
         e.target.style.backgroundColor = `rgb(${red}, ${blue}, ${green})`;
     }
-    
-    console.log(e.target);
 }
 
-function cleanGrid(){
+function changeSize(newSize) {
+    setSize(newSize);
+    updateSizeValue(newSize);
+    reloadGrid();
+}
+
+function clearGrid() {
     grid.innerHTML = '';
 }
 
-function createGrid(size){
+function createGrid(size) {
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
@@ -77,7 +100,13 @@ function createGrid(size){
     }
 }
 
+function reloadGrid() {
+    clearGrid()
+    createGrid(size);
+}
+
 window.onload = () => {
     createGrid(size);
+    sizeSlider.value = size;
     activateButton(mode);
 }

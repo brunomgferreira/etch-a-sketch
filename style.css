@@ -88,3 +88,7 @@ button {
     padding: 10px;
     font-size: 20px;
 }
+
+.active {
+    background-color: black;
+}

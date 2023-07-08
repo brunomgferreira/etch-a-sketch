@@ -4,6 +4,7 @@ let size = 16
 
 function setColor(newColor) {
     color = newColor;
+    setMode('color');
 }
 
 function setMode(newMode) {
